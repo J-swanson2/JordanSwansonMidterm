@@ -13,7 +13,7 @@ $database = new Database();
 $db = $database->connect();
 
 //Instantiate categories object
-$categories = new categories($db);
+$categories = new Categories($db);
 
 //Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
@@ -24,10 +24,10 @@ $categories->category = $data->category;
 //Create category
 if ($categories->create()) {
 	echo json_encode(
-		array('message' => 'Author Created')
+		array('message' => 'Category Created')
 	);
 } else {
 	echo json_encode(
-		array('message' => 'Author Not Created')
+		array('message' => 'Category Not Created')
 	);
 }
