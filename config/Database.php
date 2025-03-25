@@ -17,12 +17,12 @@ class Database
 	}
 
 	public function connect() {
-		//$this->conn = null; REPLACE WITH BELOW
-		if ($this->conn) {
-			return $this->conn;
-		} else {
+		//if ($this->conn) {
+		//	return $this->conn;
+		//} else {
+		$this->conn = null;
 
-			$dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name}";
+			$dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name};";
 
 			try { //set conn to a PDO that connects to database and returns it.
 				$this->conn = new PDO($dsn, $this->username, $this->password);
@@ -30,7 +30,7 @@ class Database
 				return $this->conn;
 			} catch (PDOException $e) {
 				echo 'Connection Error: ' . $e->getMessage();
-			}
+			//}
 		}
 	}
 }
