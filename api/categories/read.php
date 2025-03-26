@@ -40,9 +40,9 @@ if ($num > 0) {
 	echo json_encode($categories_arr);
 
 } else {
-	//no posts
+	//no categories
 	echo json_encode(
-		array('message' => 'No Categories Found')
+		array('message' => 'category_id Not Found')
 	);
 }
 

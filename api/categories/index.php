@@ -10,7 +10,13 @@ if ($method === 'OPTIONS') {
 }
 
 if ($method === 'POST') {
-	require 'create.php';
+	if (isset($_POST['category'])) {
+		require 'create.php';
+	} else {
+		echo json_encode(
+			array('message' => 'Missing Required Parameters')
+		);
+	}
 } else if ($method === 'GET') {
 	if (isset($_GET['id'])) {
 		require 'read_single.php';
@@ -18,8 +24,20 @@ if ($method === 'POST') {
 		require 'read.php';
 	}
 } else if ($method === 'PUT') {
-	require 'update.php';
+	if (isset($_PUT['category']) && isset($_PUT['id'])) {
+		require 'update.php';
+	} else {
+		echo json_encode(
+			array('message' => 'Missing Required Parameters')
+		);
+	}
 } else if ($method === 'DELETE') {
-	require 'delete.php';
+	if (isset($_DELETE['id'])) {
+		require 'delete.php';
+	} else {
+		echo json_encode(
+			array('message' => 'Missing Required Parameters')
+		);
+	}
 } else {
 	exit();}

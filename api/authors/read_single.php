@@ -16,13 +16,20 @@ $authors = new Authors($db);
 //Get ID
 $authors->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-//Get post
+//Get Author
 $authors->read_single();
 
-$authors_arr = array(
-	'id' => $authors->id,
-	'author' => $authors->author
-);
+if (!empty($authors->author)) {
+	$authors_arr = array(
+		'id' => $authors->id,
+		'author' => $authors->author
+	);
+	//make json
+	print_r(json_encode($authors_arr));
+} else {
+	//no Author
+	echo json_encode(
+		array('message' => 'author_id Not Found')
+	);
+}
 
-//make json
-print_r(json_encode($authors_arr));

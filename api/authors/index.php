@@ -10,7 +10,13 @@
 	}
 
 	if ($method === 'POST') {
+		if (isset($_POST['author'])) {
 		require 'create.php';
+		} else {
+			echo json_encode(
+				array('message' => 'Missing Required Parameters')
+			);
+		}
 	} else if ($method === 'GET') {
 		if (isset($_GET['id'])) {
 			require 'read_single.php';
@@ -18,7 +24,19 @@
 			require 'read.php';
 		}
 	} else if ($method === 'PUT') {
-		require 'update.php';
+		if (isset($_PUT['author']) && isset($_PUT['id'])) {
+			require 'update.php';
+		} else {
+			echo json_encode(
+				array('message' => 'Missing Required Parameters')
+			);
+	}
 	}  else if ($method === 'DELETE') {
-		require 'delete.php';
+		if (isset($_DELETE['id'])) {
+			require 'delete.php';
+		} else {
+			echo json_encode(
+				array('message' => 'Missing Required Parameters')
+			);
+	}
 	} else {exit();}
