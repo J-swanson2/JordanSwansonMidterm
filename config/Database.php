@@ -10,7 +10,7 @@ class Database
 
 	public function __construct() { //load enviornment variables
 		$this->host = getenv('HOST');
-		$this->port = getenv('PORT');
+		//$this->port = getenv('PORT');
 		$this->db_name = getenv('DBNAME');
 		$this->username = getenv('USERNAME');
 		$this->password = getenv('PASSWORD');
@@ -22,7 +22,7 @@ class Database
 		//} else {
 		$this->conn = null;
 
-			$dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name};";
+			$dsn = "pgsql:host={$this->host};dbname={$this->db_name};"; //port={$this->port}; insert this after host.
 
 			try { //set conn to a PDO that connects to database and returns it.
 				$this->conn = new PDO($dsn, $this->username, $this->password);
