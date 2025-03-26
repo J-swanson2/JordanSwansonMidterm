@@ -49,17 +49,18 @@ class Categories
 		//if ID was not found, $row is false - so following will only execute if ID found
 		if ($row) {
 			$this->category = $row['category'];
-		} else {
+			$categories_arr = array(
+				"id" => $this->id,
+				"category" => $this->category
+			);
+
+			//make json
+			print_r(json_encode($categories_arr));
+		} else { //if ID is not found
 			echo json_encode(['message' => 'category_id Not Found']);
 			exit();
 		}
-		$categories_arr = array(
-			"id" => $this->id,
-			"category" => $this->category
-		);
-
-		//make json
-		print_r(json_encode($categories_arr));
+		
 	}
 
 	public function create() {

@@ -68,6 +68,15 @@ class Quotes
 			$this->author = $row['author'];
 			$this->category = $row['category'];
 			$this->id = $row['id'];
+
+			$quote_arr = array(
+				"id" => $this->id,
+				"quote" => $this->quote,
+				"author" => $this->author,
+				"category" => $this->category
+			);
+			//make json
+			print_r(json_encode($quote_arr));
 		} else {
 			//no Quote
 			echo json_encode(['message' => 'No Quotes Found']);

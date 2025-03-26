@@ -33,7 +33,7 @@ if ($num > 0) {
 		);
 
 		//Push to "data"
-		array_push($categories_arr, $category_item); //push the category_item 2d array we made to the categories_arr array at the data index array
+		array_push($categories_arr, $category_item); //push the category_item array we made to the categories_arr array
 	}
 
 	//Turn to JSON & output

@@ -50,6 +50,16 @@ class Authors
 		//if ID was not found, $row is false - so following will only execute if ID found
 		if ($row) {
 			$this->author = $row['author'];
+			$authors_arr = array(
+				"id" => $this->id,
+				"author" => $this->author
+			);
+
+			//make json
+			print_r(json_encode($authors_arr));
+		} else {
+			//no Author
+			echo json_encode(['message' => 'author_id Not Found']);
 		}
 	}
 
