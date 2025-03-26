@@ -134,7 +134,11 @@ class Categories
 
 		//Execute Query
 		$stmt->execute();
-		
+		if ($stmt->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>
