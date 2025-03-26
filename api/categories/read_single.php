@@ -21,8 +21,8 @@ $categories->read_single();
 
 if (!empty($authors->author)) {
 	$categories_arr = array(
-		'id' => $categories->id,
-		'category' => $categories->category
+		"id" => $categories->id,
+		"category" => $categories->category
 	);
 
 	//make json

@@ -21,8 +21,8 @@ $authors->read_single();
 
 if (!empty($authors->author)) {
 	$authors_arr = array(
-		'id' => $authors->id,
-		'author' => $authors->author
+		"id" => $authors->id,
+		"author" => $authors->author
 	);
 	//make json
 	print_r(json_encode($authors_arr));

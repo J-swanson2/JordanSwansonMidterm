@@ -28,12 +28,12 @@ if ($num > 0) {
 		extract($row);
 
 		$category_item = array( //fill array with data from the Categories object we read and stored in result
-			'id' => $id,
-			'category' => $category,
+			"id" => $id,
+			"category" => $category,
 		);
 
 		//Push to "data"
-		array_push($categories_arr['data'], $category_item); //push the category_item 2d array we made to the categories_arr array at the data index array
+		array_push($categories_arr, $category_item); //push the category_item 2d array we made to the categories_arr array at the data index array
 	}
 
 	//Turn to JSON & output

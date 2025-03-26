@@ -28,14 +28,14 @@ if ($num > 0) {
 		extract($row);
 
 		$quote_item = array( //fill array with data from the Categories object we read and stored in result
-			'id' => $id,
-			'quote' => $quote,
-			'author' => $author,
-			'category' => $category
+			"id" => $id,
+			"quote" => $quote,
+			"author" => $author,
+			"category" => $category
 		);
 
 		//Push to "data"
-		array_push($quotes_arr['data'], $quote_item); //push the quote_item 2d array we made to the quotes_arr array at the data index array
+		array_push($quotes_arr, $quote_item); //push the quote_item 2d array we made to the quotes_arr array at the data index array
 	}
 
 	//Turn to JSON & output
