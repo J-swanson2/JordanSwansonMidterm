@@ -19,17 +19,10 @@ $categories->id = isset($_GET['id']) ? $_GET['id'] : die();
 //Get post
 $categories->read_single();
 
-if (!empty($authors->author)) {
-	$categories_arr = array(
-		"id" => $categories->id,
-		"category" => $categories->category
-	);
+$categories_arr = array(
+	"id" => $categories->id,
+	"category" => $categories->category
+);
 
-	//make json
-	print_r(json_encode($categories_arr));
-} else {
-	//no Category
-	echo json_encode(
-		array('message' => 'category_id Not Found')
-	);
-}
+//make json
+print_r(json_encode($categories_arr));

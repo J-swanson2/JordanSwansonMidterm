@@ -45,9 +45,11 @@ class Authors
 		//execute
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		$this->author = $row['author'];
-		//return $stmt;
+		
+		//if ID was not found, $row is false - so following will only execute if ID found
+		if ($row) {
+			$this->author = $row['author'];
+		}
 	}
 
 	public function create(){

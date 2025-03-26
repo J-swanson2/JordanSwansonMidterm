@@ -62,10 +62,17 @@ class Quotes
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		$this->quote = $row['quote'];
-		$this->author = $row['author'];
-		$this->category = $row['category'];
-		$this->id = $row['id'];
+		//if ID was not found, $row is false - so following will only execute if ID found
+		if ($row) {
+			$this->quote = $row['quote'];
+			$this->author = $row['author'];
+			$this->category = $row['category'];
+			$this->id = $row['id'];
+		} else {
+			//no Author
+			echo json_encode(['message' => 'No Quotes Found']);
+			exit();
+		}
 	}
 
 	public function create() {

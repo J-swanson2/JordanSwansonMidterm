@@ -24,12 +24,11 @@ if (!empty($authors->author)) {
 		"id" => $authors->id,
 		"author" => $authors->author
 	);
+
 	//make json
 	print_r(json_encode($authors_arr));
 } else {
 	//no Author
-	echo json_encode(
-		array('message' => 'author_id Not Found')
-	);
+	echo json_encode(['message' => 'author_id Not Found']);
 }
 
