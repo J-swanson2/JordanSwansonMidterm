@@ -21,4 +21,18 @@ $data = json_decode(file_get_contents("php://input"));
 // Set ID to update
 $categories->id = $data->id;
 
-
+if (isset($data->id)) {
+	// Set ID to delete
+	$categories->id = $data->id;
+	if ($categories->delete()) {
+		echo json_encode(
+			["id" => $categories->id]
+		);
+	} else {
+		echo json_encode(
+			array('message' => 'No category_id Found')
+		);
+	}
+} else {
+	echo json_encode(['message' => 'Missing Required Parameters']);
+}

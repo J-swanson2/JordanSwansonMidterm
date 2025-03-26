@@ -21,4 +21,18 @@ $data = json_decode(file_get_contents("php://input"));
 // Set ID to update
 $quotes->id = $data->id;
 
-
+if (isset($data->id)) {
+	// Set ID to delete
+	$quotes->id = $data->id;
+	if ($quotes->delete()) {
+		echo json_encode(
+			["id" => $quotes->id]
+		);
+	} else {
+		echo json_encode(
+			array('message' => 'No Quotes Found')
+		);
+	}
+} else {
+	echo json_encode(['message' => 'Missing Required Parameters']);
+}

@@ -167,15 +167,6 @@ class Quotes
 
 		//Execute Query
 		$stmt->execute();
-		if ($stmt->rowCount() > 0) {
-			echo json_encode(
-			array(["id" => $this->id])
-			);
-		} else {
-			echo json_encode(
-			array('message' => 'No Quotes Found')
-			);
-		}
 	}
 
 	public function checkID(){

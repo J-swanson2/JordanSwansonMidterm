@@ -18,7 +18,20 @@ $authors = new Authors($db);
 //Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-// Set ID to update
-$authors->id = $data->id;
+if(isset($data->id)){
+	// Set ID to delete
+	$authors->id = $data->id;
+	if($authors->delete()){
+		echo json_encode(
+				["id" => $authors->id]
+			);
+	} else {
+		echo json_encode(
+				array('message' => 'No author_id Found')
+			);
+	} 
+} else {
+		echo json_encode(['message' => 'Missing Required Parameters']);
+	}
 
 

@@ -134,15 +134,7 @@ class Categories
 
 		//Execute Query
 		$stmt->execute();
-		if ($stmt->rowCount() > 0){
-			echo json_encode(
-				array(["id" => $this->id])
-			);
-		} else {
-			echo json_encode(
-				array('message' => 'No category_id Found')
-			);
-		}
+		
 	}
 }
 ?>

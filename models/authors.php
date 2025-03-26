@@ -126,15 +126,7 @@ class Authors
 		//Execute Query
 		$stmt->execute();
 
-		if ($stmt->rowCount() >0){
-			echo json_encode(
-				array(["id" => $authors->id])
-			);
-		} else {
-			echo json_encode(
-				array('message' => 'No author_id Found')
-			);
-		}
+		
 	}
 	
 	

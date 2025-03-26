@@ -34,11 +34,10 @@
 			);
 	}
 	}  else if ($method === 'DELETE') {
-		if (isset($_DELETE['id'])) {
 			require 'delete.php';
-		} else {
-			echo json_encode(
-				array('message' => 'Missing Required Parameters')
-			);
+		//} else {
+		//	echo json_encode(
+		//		array('message' => 'Missing Required Parameters')
+		//	);
 	}
-	} else {exit();}
+	 else {exit();}
