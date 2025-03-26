@@ -114,10 +114,11 @@ class Quotes
 				"category_id" => $this->category_id
 			]);
 			return true;
+		} else {
+			//Print error if something goes wrong
+			printf("Error: %s.\n", $stmt->error);
+			return false;
 		}
-		//Print error if something goes wrong
-		printf("Error: %s.\n", $stmt->error);
-		return false;
 	}
 
 	public function update() {

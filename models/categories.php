@@ -85,10 +85,11 @@ class Categories
 				"category" => $this->category
 			]);
 			return true;
+		} else {
+			//Print error if something goes wrong
+			printf("Error: %s.\n", $stmt->error);
+			return false;
 		}
-		//Print error if something goes wrong
-		printf("Error: %s.\n", $stmt->error);
-		return false;
 	}
 
 	public function update() {
@@ -116,10 +117,10 @@ class Categories
 				"category" => $this->category
 			]);
 			return true;
+		} else { //if ID is not found
+			echo json_encode(['message' => 'category_id Not Found']);
+			exit();
 		}
-		//Print error if something goes wrong
-		printf("Error: %s.\n", $stmt->error);
-		return false;
 	}
 
 	public function delete() {

@@ -85,10 +85,11 @@ class Authors
 				"author" => $this->author
 			]);
 			return true;
+		} else {
+			//Print error if something goes wrong
+			printf("Error: %s.\n", $stmt->error);
+			return false;
 		}
-		//Print error if something goes wrong
-		printf("Error: %s.\n", $stmt->error);
-		return false;
 	}
 
 	public function update() {
@@ -116,10 +117,10 @@ class Authors
 				"author" => $this->author
 			]);
 			return true;
+		} else {
+			//no Author
+			echo json_encode(['message' => 'author_id Not Found']);
 		}
-		//Print error if something goes wrong
-		printf("Error: %s.\n", $stmt->error);
-		return false;
 	}
 
 	public function delete(){
