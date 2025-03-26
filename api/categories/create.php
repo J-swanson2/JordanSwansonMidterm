@@ -21,8 +21,8 @@ $data = json_decode(file_get_contents("php://input"));
 $categories->category = $data->category;
 
 //Create category
-if ($categories->create()) {
-}
+$categories->create();
+
 	/*echo json_encode(
 		array('message' => 'Category Created')
 	);

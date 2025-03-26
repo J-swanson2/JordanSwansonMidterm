@@ -76,6 +76,42 @@ class Quotes
 	}
 
 	public function create() {
+		//Check if Author ID exists
+		$query = 'SELECT id FROM authors
+					WHERE id = :author_id';
+		//prepare Statement
+		$stmt = $this->conn->prepare($query);
+		//Clean Data
+		$this->author_id = htmlspecialchars(strip_tags($this->author_id));
+		//bind parameter
+		$stmt->bindParam(':author_id', $this->author_id);
+		//execute statement
+		$stmt->execute();
+
+		//Check if author exists, if not then return message and exit
+		if ($stmt->rowCount() == 0){
+			echo json_encode(['message' => 'author_id Not Found']);
+			exit();
+		}
+
+		//Check if Category ID exists
+		$query = 'SELECT id FROM categories
+					WHERE id = :category_id';
+		//prepare Statement
+		$stmt = $this->conn->prepare($query);
+		//Clean Data
+		$this->author_id = htmlspecialchars(strip_tags($this->author_id));
+		//bind parameter
+		$stmt->bindParam(':category_id', $this->category_id);
+		//execute statement
+		$stmt->execute();
+
+		//Check if category exists, if not then return message and exit
+		if ($stmt->rowCount() == 0) {
+			echo json_encode(['message' => 'category_id Not Found']);
+			exit();
+		}
+
 		$query = 'INSERT INTO ' .
 			$this->table . ' (quote, author_id, category_id)
 		VALUES
@@ -95,6 +131,13 @@ class Quotes
 
 		//Execute Query
 		if ($stmt->execute()) {
+			$lastInsertId = $this->conn->lastInsertId();
+			echo json_encode([
+				"id" => $lastInsertId,
+				"quote" => $this->quote,
+				"author_id" => $this->author_id,
+				"category_id" => $this->category_id
+			]);
 			return true;
 		}
 		//Print error if something goes wrong
@@ -128,6 +171,12 @@ class Quotes
 
 		//Execute Query
 		if ($stmt->execute()) {
+			echo json_encode([
+				"id" => $this->id,
+				"quote" => $this->quote,
+				"author_id" => $this->author_id,
+				"category_id" => $this->category_id
+			]);
 			return true;
 		}
 		//Print error if something goes wrong

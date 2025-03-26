@@ -68,6 +68,11 @@ class Authors
 
 		//Execute Query
 		if ($stmt->execute()) {
+			$lastInsertId = $this->conn->lastInsertId();
+			echo json_encode([
+				"id" => $lastInsertId,
+				"author" => $this->author
+			]);
 			return true;
 		}
 		//Print error if something goes wrong
@@ -95,6 +100,10 @@ class Authors
 
 		//Execute Query
 		if ($stmt->execute()) {
+			echo json_encode([
+				"id" => $this->id,
+				"author" => $this->author
+			]);
 			return true;
 		}
 		//Print error if something goes wrong

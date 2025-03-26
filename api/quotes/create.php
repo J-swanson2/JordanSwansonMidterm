@@ -18,17 +18,8 @@ $quotes = new Quotes($db);
 //Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$quotes->id = $data->id;
 $quotes->quote = $data->quote;
 $quotes->author_id = $data->author_id;
 $quotes->category_id = $data->category_id;
 
-//Create quote
-//if ($quotes->create()) {
-	
-//}
-//} else {
-//	echo json_encode(
-//		array('message' => 'Quote Not Created')
-//	);
-//}
+$quotes->create();

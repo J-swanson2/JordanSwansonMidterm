@@ -18,16 +18,7 @@ $authors = new authors($db);
 //Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$authors->id = $data->id;
 $authors->author = $data->author;
 
 //Create author
-if ($authors->create()) {
-	echo json_encode(
-		array('message' => 'Author Created')
-	);
-} else {
-	echo json_encode(
-		array('message' => 'Author Not Created')
-	);
-}
+$authors->create();

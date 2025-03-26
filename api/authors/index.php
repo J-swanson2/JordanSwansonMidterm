@@ -10,7 +10,8 @@
 	}
 
 	if ($method === 'POST') {
-		if (isset($_POST['author'])) {
+		$data = json_decode(file_get_contents("php://input"), true);
+		if (isset($data['author'])) {
 		require 'create.php';
 		} else {
 			echo json_encode(
@@ -24,7 +25,8 @@
 			require 'read.php';
 		}
 	} else if ($method === 'PUT') {
-		if (isset($_PUT['author']) && isset($_PUT['id'])) {
+		$data = json_decode(file_get_contents("php://input"), true);
+		if (isset($data['author']) && isset($data['id'])) {
 			require 'update.php';
 		} else {
 			echo json_encode(

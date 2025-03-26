@@ -10,7 +10,8 @@ if ($method === 'OPTIONS') {
 }
 
 if ($method === 'POST') {
-	if (isset($_POST['quote']) && isset($_POST['authoor_id']) && isset($_POST['category_id'])) {
+	$data = json_decode(file_get_contents("php://input"), true);
+	if (isset($data['quote']) && isset($data['author_id']) && isset($data['category_id'])) {
 		require 'create.php';
 	} else {
 		echo json_encode(
@@ -24,7 +25,8 @@ if ($method === 'POST') {
 		require 'read.php';
 	}
 } else if ($method === 'PUT') {
-	if (isset($_PUT['quote']) && isset($_PUT['authoor_id']) && isset($_PUT['category_id'])) {
+	$data = json_decode(file_get_contents("php://input"), true);
+	if (isset($data['quote']) && isset($data['authoor_id']) && isset($data['category_id'])) {
 		require 'update.php';
 	} else {
 		echo json_encode(

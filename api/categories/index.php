@@ -25,7 +25,8 @@ if ($method === 'POST') {
 		require 'read.php';
 	}
 } else if ($method === 'PUT') {
-	if (isset($_PUT['category']) && isset($_PUT['id'])) {
+	$data = json_decode(file_get_contents("php://input"), true);
+	if (isset($data['category']) && isset($data['id'])) {
 		require 'update.php';
 	} else {
 		echo json_encode(

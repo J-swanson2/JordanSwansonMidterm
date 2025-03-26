@@ -110,6 +110,10 @@ class Categories
 
 		//Execute Query
 		if ($stmt->execute()) {
+			echo json_encode([
+				"id" => $this->id,
+				"category" => $this->category
+			]);
 			return true;
 		}
 		//Print error if something goes wrong
