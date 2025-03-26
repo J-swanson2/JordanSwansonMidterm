@@ -139,16 +139,14 @@ class Quotes
 
 		//Execute Query
 		$stmt->execute();
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		if ($row){
+		if ($stmt->rowCount() > 0){
 			echo json_encode([
 				"id" => $this->id,
 				"quote" => $this->quote,
 				"author_id" => $this->author_id,
 				"category_id" => $this->category_id
 			]);
-			return true;
 			} else {
 				//no Quote
 				echo json_encode(['message' => 'No Quotes Found']);
@@ -169,9 +167,7 @@ class Quotes
 
 		//Execute Query
 		if ($stmt->execute()) {
-			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-			if ($row) {
+			if ($stmt->rowCount() > 0) {
 				return true;
 			}
 		}

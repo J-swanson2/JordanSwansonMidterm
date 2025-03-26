@@ -34,7 +34,8 @@ if ($method === 'POST') {
 		);
 	}
 } else if ($method === 'DELETE') {
-	if (isset($_DELETE['id'])) {
+	$data = json_decode(file_get_contents("php://input"), true);
+	if (isset($data['id'])) {
 		require 'delete.php';
 	} else {
 		echo json_encode(
