@@ -124,11 +124,19 @@ class Authors
 		$stmt->bindParam(':id', $this->id);
 
 		//Execute Query
-		if ($stmt->execute()) {
-			return true;
+		$stmt->execute();
+
+		if ($stmt->rowCount() >0){
+			echo json_encode(
+				array(["id" => $authors->id])
+			);
 		} else {
-			return false;
+			echo json_encode(
+				array('message' => 'No author_id Found')
+			);
 		}
 	}
+	
+	
 }
 ?>

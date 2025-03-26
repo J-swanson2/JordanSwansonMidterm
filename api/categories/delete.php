@@ -21,13 +21,4 @@ $data = json_decode(file_get_contents("php://input"));
 // Set ID to update
 $categories->id = $data->id;
 
-//Delete Category
-if ($categories->delete()) {
-	echo json_encode(
-		array(["id" => $categories->id])
-	);
-} else {
-	echo json_encode(
-		array('message' => 'No category_id Found')
-	);
-}
+

@@ -21,13 +21,4 @@ $data = json_decode(file_get_contents("php://input"));
 // Set ID to update
 $authors->id = $data->id;
 
-//Delete Author
-if ($authors->delete()) {
-	echo json_encode(
-		array(["id" => $authors->id])
-	);
-} else {
-	echo json_encode(
-		array('message' => 'No author_id Found')
-	);
-}
+

@@ -166,12 +166,15 @@ class Quotes
 		$stmt->bindParam(':id', $this->id);
 
 		//Execute Query
-		if ($stmt->execute()) {
-			if ($stmt->rowCount() > 0) {
-				return true;
-			}
+		$stmt->execute();
+		if ($stmt->rowCount() > 0) {
+			echo json_encode(
+			array(["id" => $this->id])
+			);
 		} else {
-			return false;
+			echo json_encode(
+			array('message' => 'No Quotes Found')
+			);
 		}
 	}
 

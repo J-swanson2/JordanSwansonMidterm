@@ -133,10 +133,15 @@ class Categories
 		$stmt->bindParam(':id', $this->id);
 
 		//Execute Query
-		if ($stmt->execute()) {
-			return true;
+		$stmt->execute();
+		if ($stmt->rowCount() > 0){
+			echo json_encode(
+				array(["id" => $this->id])
+			);
 		} else {
-			return false;
+			echo json_encode(
+				array('message' => 'No category_id Found')
+			);
 		}
 	}
 }
