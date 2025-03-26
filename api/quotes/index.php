@@ -26,7 +26,7 @@ if ($method === 'POST') {
 	}
 } else if ($method === 'PUT') {
 	$data = json_decode(file_get_contents("php://input"), true);
-	if (isset($data['quote']) && isset($data['authoor_id']) && isset($data['category_id'])) {
+	if (isset($data['quote']) && isset($data['author_id']) && isset($data['category_id'])) {
 		require 'update.php';
 	} else {
 		echo json_encode(

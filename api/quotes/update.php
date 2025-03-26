@@ -26,12 +26,4 @@ $quotes->author_id = $data->author_id;
 $quotes->category_id = $data->category_id;
 
 //Update quotes
-if ($quotes->update()) {
-	echo json_encode(
-		array('message' => 'Category Update')
-	);
-} else {
-	echo json_encode(
-		array('message' => 'Category Not Updated')
-	);
-}
+$quotes->update();

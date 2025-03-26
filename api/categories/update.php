@@ -24,14 +24,4 @@ $categories->id = $data->id;
 $categories->category = $data->category;
 
 //Update categories
-if ($categories->update()) {
-
-	$categories->read_single();
-	//echo json_encode(
-		//array('message' => 'Category Update')
-	//);
-} //else {
-	//echo json_encode(
-		//array('message' => 'Category Not Updated')
-	//);
-//}
+$categories->update();

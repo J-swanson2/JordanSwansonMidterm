@@ -69,48 +69,14 @@ class Quotes
 			$this->category = $row['category'];
 			$this->id = $row['id'];
 		} else {
-			//no Author
+			//no Quote
 			echo json_encode(['message' => 'No Quotes Found']);
 			exit();
 		}
 	}
 
 	public function create() {
-		//Check if Author ID exists
-		$query = 'SELECT id FROM authors
-					WHERE id = :author_id';
-		//prepare Statement
-		$stmt = $this->conn->prepare($query);
-		//Clean Data
-		$this->author_id = htmlspecialchars(strip_tags($this->author_id));
-		//bind parameter
-		$stmt->bindParam(':author_id', $this->author_id);
-		//execute statement
-		$stmt->execute();
-
-		//Check if author exists, if not then return message and exit
-		if ($stmt->rowCount() == 0){
-			echo json_encode(['message' => 'author_id Not Found']);
-			exit();
-		}
-
-		//Check if Category ID exists
-		$query = 'SELECT id FROM categories
-					WHERE id = :category_id';
-		//prepare Statement
-		$stmt = $this->conn->prepare($query);
-		//Clean Data
-		$this->author_id = htmlspecialchars(strip_tags($this->author_id));
-		//bind parameter
-		$stmt->bindParam(':category_id', $this->category_id);
-		//execute statement
-		$stmt->execute();
-
-		//Check if category exists, if not then return message and exit
-		if ($stmt->rowCount() == 0) {
-			echo json_encode(['message' => 'category_id Not Found']);
-			exit();
-		}
+		$this->checkID(); //Check the categoy and author ID's to make sure they exist
 
 		$query = 'INSERT INTO ' .
 			$this->table . ' (quote, author_id, category_id)
@@ -146,6 +112,8 @@ class Quotes
 	}
 
 	public function update() {
+		$this->checkID(); //Check the categoy and author ID's to make sure they exist
+
 		$query = 'UPDATE ' .
 			$this->table . '
 		SET
@@ -170,7 +138,10 @@ class Quotes
 		$stmt->bindParam(':category_id', $this->category_id);
 
 		//Execute Query
-		if ($stmt->execute()) {
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if ($row){
 			echo json_encode([
 				"id" => $this->id,
 				"quote" => $this->quote,
@@ -178,10 +149,11 @@ class Quotes
 				"category_id" => $this->category_id
 			]);
 			return true;
-		}
-		//Print error if something goes wrong
-		printf("Error: %s.\n", $stmt->error);
-		return false;
+			} else {
+				//no Quote
+				echo json_encode(['message' => 'No Quotes Found']);
+				exit();
+			}	
 	}
 
 	public function delete() {
@@ -202,6 +174,44 @@ class Quotes
 		//Print error if something goes wrong
 		printf("Error: %s.\n", $stmt->error);
 		return false;
+	}
+
+	public function checkID(){
+		//Check if Author ID exists
+		$query = 'SELECT id FROM authors
+					WHERE id = :author_id';
+		//prepare Statement
+		$stmt = $this->conn->prepare($query);
+		//Clean Data
+		$this->author_id = htmlspecialchars(strip_tags($this->author_id));
+		//bind parameter
+		$stmt->bindParam(':author_id', $this->author_id);
+		//execute statement
+		$stmt->execute();
+
+		//Check if author exists, if not then return message and exit
+		if ($stmt->rowCount() == 0){
+			echo json_encode(['message' => 'author_id Not Found']);
+			exit();
+		}
+
+		//Check if Category ID exists
+		$query = 'SELECT id FROM categories
+					WHERE id = :category_id';
+		//prepare Statement
+		$stmt = $this->conn->prepare($query);
+		//Clean Data
+		$this->author_id = htmlspecialchars(strip_tags($this->author_id));
+		//bind parameter
+		$stmt->bindParam(':category_id', $this->category_id);
+		//execute statement
+		$stmt->execute();
+
+		//Check if category exists, if not then return message and exit
+		if ($stmt->rowCount() == 0) {
+			echo json_encode(['message' => 'category_id Not Found']);
+			exit();
+		}
 	}
 }
 ?>

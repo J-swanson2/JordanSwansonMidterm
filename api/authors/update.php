@@ -24,12 +24,4 @@ $authors->id = $data->id;
 $authors->author = $data->author;
 
 //Update authors
-if ($authors->update()) {
-	echo json_encode(
-		array('message' => 'Author Update')
-	);
-} else {
-	echo json_encode(
-		array('message' => 'Author Not Updated')
-	);
-}
+$authors->update();
