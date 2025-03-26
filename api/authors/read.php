@@ -28,8 +28,8 @@ if ($num > 0) {
 		extract($row);
 
 		$author_item = array( //fill array with data from the Authors object we read and stored in result
-			/*'id' => */ $id,
-			/*'author' => */ $author,
+			"id" => $id,
+			"author" => $author,
 		);
 
 		//Push to "data"
