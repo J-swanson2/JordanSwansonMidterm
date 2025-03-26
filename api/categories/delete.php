@@ -28,6 +28,6 @@ if ($categories->delete()) {
 	);
 } else {
 	echo json_encode(
-		array('message' => 'Category Not Deleted')
+		array('message' => 'No category_id Found')
 	);
 }

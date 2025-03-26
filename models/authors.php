@@ -52,18 +52,16 @@ class Authors
 
 	public function create(){
 		$query = 'INSERT INTO ' .
-			$this->table . ' (id, author)
+			$this->table . ' (author)
 		VALUES
-			(:id, :author)';
+			(:author)';
 
 		//Prepare Statement
 		$stmt = $this->conn->prepare($query);
 
 		//Clean Data
-		$this->id = (int)htmlspecialchars(strip_tags($this->id));
 		$this->author = htmlspecialchars(strip_tags($this->author));
 		
-		$stmt->bindParam(':id', $this->id);
 		$stmt->bindParam(':author', $this->author);
 
 		//Execute Query

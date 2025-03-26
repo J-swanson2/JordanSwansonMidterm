@@ -24,10 +24,10 @@ $quotes->id = $data->id;
 //Delete Category
 if ($quotes->delete()) {
 	echo json_encode(
-		array('message' => 'Category Deleted')
+		array('message' => 'Quote Deleted')
 	);
 } else {
 	echo json_encode(
-		array('message' => 'Category Not Deleted')
+		array('message' => 'No Quotes Found')
 	);
 }

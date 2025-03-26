@@ -28,6 +28,6 @@ if ($authors->delete()) {
 	);
 } else {
 	echo json_encode(
-		array('message' => 'Author Not Deleted')
+		array('message' => 'No author_id Found')
 	);
 }

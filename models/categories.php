@@ -52,18 +52,16 @@ class Categories
 
 	public function create() {
 		$query = 'INSERT INTO ' .
-			$this->table . ' (id, category)
+			$this->table . ' (category)
 		VALUES
-			(:id, :category)';
+			(:category)';
 
 		//Prepare Statement
 		$stmt = $this->conn->prepare($query);
 
 		//Clean Data
-		$this->id = (int) htmlspecialchars(strip_tags($this->id));
 		$this->category = htmlspecialchars(strip_tags($this->category));
 
-		$stmt->bindParam(':id', $this->id);
 		$stmt->bindParam(':category', $this->category);
 
 		//Execute Query
