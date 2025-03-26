@@ -169,7 +169,11 @@ class Quotes
 
 		//Execute Query
 		if ($stmt->execute()) {
-			return true;
+			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			if ($row) {
+				return true;
+			}
 		}
 		//Print error if something goes wrong
 		printf("Error: %s.\n", $stmt->error);

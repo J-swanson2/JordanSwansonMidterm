@@ -24,7 +24,7 @@ $quotes->id = $data->id;
 //Delete Category
 if ($quotes->delete()) {
 	echo json_encode(
-		array('message' => 'Quote Deleted')
+		array(["id" => $quotes->id])
 	);
 } else {
 	echo json_encode(
