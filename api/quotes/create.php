@@ -24,12 +24,11 @@ $quotes->author_id = $data->author_id;
 $quotes->category_id = $data->category_id;
 
 //Create quote
-if ($quotes->create()) {
-	echo json_encode(
-		array('message' => 'Quote Created')
-	);
-} else {
-	echo json_encode(
-		array('message' => 'Quote Not Created')
-	);
-}
+//if ($quotes->create()) {
+	
+//}
+//} else {
+//	echo json_encode(
+//		array('message' => 'Quote Not Created')
+//	);
+//}

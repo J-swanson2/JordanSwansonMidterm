@@ -10,7 +10,8 @@ if ($method === 'OPTIONS') {
 }
 
 if ($method === 'POST') {
-	if (isset($_POST['category'])) {
+	$data = json_decode(file_get_contents("php://input"), true);
+	if (isset($data['category'])) {
 		require 'create.php';
 	} else {
 		echo json_encode(

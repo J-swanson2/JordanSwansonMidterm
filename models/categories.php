@@ -53,6 +53,13 @@ class Categories
 			echo json_encode(['message' => 'category_id Not Found']);
 			exit();
 		}
+		$categories_arr = array(
+			"id" => $this->id,
+			"category" => $this->category
+		);
+
+		//make json
+		print_r(json_encode($categories_arr));
 	}
 
 	public function create() {
@@ -71,6 +78,11 @@ class Categories
 
 		//Execute Query
 		if ($stmt->execute()) {
+			$lastInsertId = $this->conn->lastInsertId();
+			echo json_encode([
+				"id" => $lastInsertId,
+				"category" => $this->category
+			]);
 			return true;
 		}
 		//Print error if something goes wrong

@@ -19,10 +19,4 @@ $categories->id = isset($_GET['id']) ? $_GET['id'] : die();
 //Get post
 $categories->read_single();
 
-$categories_arr = array(
-	"id" => $categories->id,
-	"category" => $categories->category
-);
 
-//make json
-print_r(json_encode($categories_arr));

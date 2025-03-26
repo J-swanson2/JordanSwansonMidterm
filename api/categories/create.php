@@ -18,16 +18,16 @@ $categories = new Categories($db);
 //Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$categories->id = $data->id;
 $categories->category = $data->category;
 
 //Create category
 if ($categories->create()) {
-	echo json_encode(
+}
+	/*echo json_encode(
 		array('message' => 'Category Created')
 	);
 } else {
 	echo json_encode(
 		array('message' => 'Category Not Created')
 	);
-}
+}*/
