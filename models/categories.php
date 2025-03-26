@@ -135,10 +135,9 @@ class Categories
 		//Execute Query
 		if ($stmt->execute()) {
 			return true;
+		} else {
+			return false;
 		}
-		//Print error if something goes wrong
-		printf("Error: %s.\n", $stmt->error);
-		return false;
 	}
 }
 ?>

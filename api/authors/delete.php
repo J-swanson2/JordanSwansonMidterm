@@ -24,7 +24,7 @@ $authors->id = $data->id;
 //Delete Author
 if ($authors->delete()) {
 	echo json_encode(
-		array(["id" => $id])
+		array(["id" => $authors->id])
 	);
 } else {
 	echo json_encode(
